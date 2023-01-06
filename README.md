@@ -75,7 +75,7 @@ inside your local `dist/` folder
 
 ## Credits
 
-The application has been build following the [tutorial](https://www.youtube.com/watch?v=Nrqdu9X3U2g) of Liam CHAMLA. I added some customisations.
+The application has been built following the [tutorial](https://www.youtube.com/watch?v=Nrqdu9X3U2g) of Liam CHAMLA. I added some customisations.
 
 ## License
 
