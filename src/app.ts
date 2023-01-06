@@ -48,7 +48,7 @@ form.addEventListener("submit", (e: SubmitEvent) => {
         themesInput.value
       ),
       max_tokens: 2000,
-      model: "text-davinci-003",
+      model: "text-davinci-003", //text-curie-001
     }),
   })
     .then((response) => response.json())
