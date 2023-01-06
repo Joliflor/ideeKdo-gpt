@@ -47,7 +47,7 @@ $ yarn add --dev
 ### Serving the app
 
 ```sh
-$ npm run start
+$ npm start
 ```
 
 <!-- ### Running the tests
@@ -59,7 +59,7 @@ $ npm test
 ### Building a distribution version
 
 ```sh
-$ npm run build
+$ npm build
 ```
 
 This task will create a distribution version of the project
