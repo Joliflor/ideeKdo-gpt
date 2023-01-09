@@ -1,3 +1,6 @@
+const URL_API_BACKEND_LOCAL = "http://localhost:5000";
+const URL_API_BACKEND_PROD = "";
+
 const form = document.querySelector<HTMLFormElement>("form")!;
 const ageInput = document.querySelector<HTMLInputElement>("#age")!;
 const themesInput = document.querySelector<HTMLInputElement>("#themes")!;
@@ -32,29 +35,34 @@ const translateTextToHtml = (text: string) =>
     .map((str) => `<p>${str}</p>`)
     .join("");
 
-form.addEventListener("submit", (e: SubmitEvent) => {
+form.addEventListener("submit", async (e: SubmitEvent) => {
   e.preventDefault();
   setLoadingItems();
 
-  fetch("https://api.openai.com/v1/completions", {
+  //fetch data from server -> bot's response
+
+  const response = await fetch(`${URL_API_BACKEND_LOCAL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_OPEN_API_KEY}`,
     },
     body: JSON.stringify({
       prompt: generatePromptByAgeAndThemes(
         ageInput.valueAsNumber,
         themesInput.value
       ),
-      max_tokens: 2000,
-      model: "text-davinci-003", //text-curie-001
     }),
-  })
-    .then((response) => response.json())
-    // .then((data) => console.log(data.choices[0].text))
-    .then((data) => {
-      footer.innerHTML = translateTextToHtml(data.choices[0].text);
-    })
-    .finally(() => removeLoadingItems());
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    footer.innerHTML = translateTextToHtml(data.bot.trim());
+  } else {
+    const err = await response.text();
+
+    footer.innerHTML = "Something went wrong";
+    alert(err);
+  }
+
+  removeLoadingItems();
 });
