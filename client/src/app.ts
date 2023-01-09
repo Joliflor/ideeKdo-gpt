@@ -1,5 +1,5 @@
 const URL_API_BACKEND_LOCAL = "http://localhost:5000";
-const URL_API_BACKEND_PROD = "";
+const URL_API_BACKEND_PROD = "https://my-service-openai-idees.onrender.com";
 
 const form = document.querySelector<HTMLFormElement>("form")!;
 const ageInput = document.querySelector<HTMLInputElement>("#age")!;
@@ -41,7 +41,7 @@ form.addEventListener("submit", async (e: SubmitEvent) => {
 
   //fetch data from server -> bot's response
 
-  const response = await fetch(`${URL_API_BACKEND_LOCAL}`, {
+  const response = await fetch(`${URL_API_BACKEND_PROD}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
